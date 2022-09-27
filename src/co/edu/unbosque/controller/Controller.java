@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import co.edu.unbosque.model.Bm;
+import co.edu.unbosque.model.KMP;
 
 public class Controller {
 
@@ -23,6 +24,7 @@ public class Controller {
 	List<Integer> resultado = new ArrayList<Integer>();// Array de los resultados
 	private ViewVentana vista;
 	private Bm bm = new Bm();
+	private KMP kmp = new KMP();
 	int data = -1;
 	public Scanner sc = new Scanner(System.in);
 
@@ -78,44 +80,39 @@ public class Controller {
 			// bm.search(txt, busqueda);
 
 		} else if (opcion > 1 && opcion <= 2) {
+			
 			String txt;
-			while ((txt = obj.readLine()) != null)
-				vista.mostrarInformacion(txt);
-			while (data != 4) {
-				String menu = " ";
+			while ((txt = obj.readLine()) != null) {
+				txt2 = txt;
 
-				menu = "que tarea desea realizar con KMP \n" + "1) Contar similitudes \n"
-						+ "2) Ver si hay coincidencias \n" + "3) Ambas acciones \n" + "4) salir";
-				// data = sc.nextInt();
-				data = vista.Leerdato(menu);
-				// int opcion = vista.Leerdato(menu);
-				switch (data) {
+				vista.mostrarInformacion("*EL TXT ES EL SIGUIENTE* \n"
+						+ " ----------------------------------------------- " + "\n" + txt);
 
-				case 1:
-
-					Contar();
-
-					break;
-				case 2:
-
-					break;
-				case 3:
-
-					break;
-
-				case 4:
-
-					vista.mostrarInformacion("fin");
-
-					break;
-
-				default:
-					System.out.println("Número no reconocido");
-					break;
-				}
-
-				System.out.println("\n");
 			}
+
+			
+			
+			
+			
+			//System.out.println(txt2);
+			//new KMP().KMP(txt2, " LA");
+			
+			String menu2 = " ";
+
+			menu2 = "Digite la palabra que quiere buscar";
+			String busqueda = vista.LeerdatoTexto(menu2);
+			bm.search(txt2, busqueda);
+			String txt3 = txt2;
+			String pat = busqueda;
+			resultado = kmp.KMPSearch(pat, txt3);
+			vista.mostrarInformacion("La cantidad de similitudes son: " +  resultado.size() +"\n"+ " La ubicacion de las similitudes son: \n" + kmp.KMPSearch(pat, txt3));
+			
+			
+			
+			
+			
+			
+			resultado = bm.search(txt2, busqueda);
 		}
 	}
 
