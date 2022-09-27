@@ -13,6 +13,7 @@ public class Bm {
 	private int[] bmBC;
 	private int[] bmGs;
 	public int comparisons;
+	public int contador;
 
 // 2
 	public void preBmBc(char[] x) {
@@ -119,8 +120,17 @@ public class Bm {
 			}
 
 		}
-
+		
+		contador = resultado.size();
 		return resultado;
 	}
+
+	public int getContador() {
+		
+		return contador;
+	}
+
+	
+	
 
 }
